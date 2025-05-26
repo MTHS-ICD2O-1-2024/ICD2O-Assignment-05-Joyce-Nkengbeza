@@ -43,9 +43,8 @@ function calculate() {
       primes.join(", ") +
       "<br>Multiplication: " +
       showSteps +
-      "<br>Final product using repeated addition is: <strong>" +
-      product +
-      "</strong>"
+      "<br>Final product: " +
+      product
   } else {
     document.getElementById("results").innerHTML =
       "There are no prime numbers in that range."
