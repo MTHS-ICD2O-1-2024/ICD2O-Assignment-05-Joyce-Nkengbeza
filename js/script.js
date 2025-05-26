@@ -4,22 +4,50 @@
 // Created on: April 2025
 // This file contains the JS functions for index.html
 
-'use strict'
+"use strict"
+
+function isPrime(num) {
+  if (num < 2) return false
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false
+  }
+  return true
+}
+
+// Multiply using addition
+function multiplyByAddition(a, b) {
+  let result = 0
+  for (let i = 0; i < b; i++) {
+    result += a
+  }
+  return result
+}
 
 function calculate() {
-  // input
-  const age = (document.getElementById("age").value);
-  const day = document.querySelector('input[name="day"]:checked').value;
+  const limit = parseInt(document.getElementById("limit").value)
+  let primes = []
+  let product = 1
+  let showSteps = "1"
 
-  // process
-    if ( day == "tuesday" || day == "thursday" || (age >= 12 && age <=21)) {
-    // output
-    document.getElementById("results").innerHTML =
-      "<p>You can recieve a student discount.</p>";
+  for (let i = 2; i <= limit; i++) {
+    if (isPrime(i)) {
+      primes.push(i)
+      product = multiplyByAddition(product, i)
+      showSteps += " × " + i
+    }
   }
 
-  else {
+  if (primes.length > 0) {
     document.getElementById("results").innerHTML =
-      "<p>You have to pay regular price.</p>";
+      "Prime numbers: " +
+      primes.join(", ") +
+      "<br>Multiplication: " +
+      showSteps +
+      "<br>Final product using repeated addition is: <strong>" +
+      product +
+      "</strong>"
+  } else {
+    document.getElementById("results").innerHTML =
+      "There are no prime numbers in that range."
   }
 }
